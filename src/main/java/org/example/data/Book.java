@@ -100,7 +100,6 @@ public class Book {
         return
                 id == book.id &&
                         price == book.price &&
-//                        count == book.count &&
                         Objects.equals(name, book.name);
     }
 }
