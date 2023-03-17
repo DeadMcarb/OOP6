@@ -38,10 +38,7 @@ public class Processor implements Process {
 
 
 
-    public void showBooks(BookList books) {
-        System.out.println(books.getSize());
-        System.out.println(books);
-    }
+
 
     public void createBooksArray(BookList books) {
         books.addBook(new Book(1, "Никогда, никогда", "Колин Гувер", 300, 2015, "Любовні романи", 800));

@@ -17,14 +17,14 @@ public class Main implements Serializable {
         System.out.println("""
                 [0] Read file
                 [1] Show all list
-                [2] Filter products by name
-                [3] Filter by Publisher
-                [4] Filter by Name & Price
-                [5] Filter by Term
-                [6] Add new product
-                [7] Delete Element By Id
+                [2] Filter by author and sorted by years
+                [3] Show author list sorted by alphabet
+                [4] show books after year
+                [5] Filter by publisher
+                [6] Add new book
+                [7] Delete book by Id
                 [8] Save
-                [9] Add few Products to Array
+                [9] Add some book to Array
                 [10] Exit
                 """);
 
@@ -44,7 +44,7 @@ public class Main implements Serializable {
             switch (m) {
 
                 case 0 -> books.setBooksList(io.readObjects(books));
-                case 1 -> processor.showBooks(books);
+                case 1 -> System.out.println(books);
 
                 case 2 -> {
                     System.out.print("Enter name of author >> ");
