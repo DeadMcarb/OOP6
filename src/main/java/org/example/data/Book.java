@@ -1,8 +1,10 @@
 package org.example.data;
 
+
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Book {
+public class Book implements Serializable {
 
     private int id; //id
     private String name; //Назва
@@ -97,9 +99,9 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return
-                id == book.id &&
-                        price == book.price &&
-                        Objects.equals(name, book.name);
+        return id == book.id
+                && price == book.price
+                && Objects.equals(name, book.name)
+                && Objects.equals(author, book.author);
     }
 }

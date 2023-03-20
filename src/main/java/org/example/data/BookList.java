@@ -32,90 +32,61 @@ public class BookList {
 
 
 
-    public void setBooksList(Book[] prods){
-        books = prods;
+    public void setBooksList(Book[] arr){
+        books = arr;
         size = books.length;
     }
 
 
 
 
-
-
-
-
-
-
-//    public void showBookByPrice(Scanner sc) {
-//
-//        System.out.print("Enter name of book >> ");
-//        String name = sc.next();
-//        System.out.print("Enter price of book >> ");
-//        double cost = sc.nextDouble();
-//
-//        for (int i = 0; i < size; i++) {
-//            if (books[i].getName().equals(name) && (books[i].getPrice() <= cost)) {
-//                System.out.println(books[i]);
-//            }
-//        }
-//    }
-
-
-
-
-//    a. список книг заданого автора в порядку зростання року видання; +++++++++
-
-//    b. список книг, що видані заданим видавництвом;  +++++++++++++
-//    c. список книг, що випущені після заданого року; +++++++++++++
-
-    //    d. список авторів в алфавітному порядку ++++++++++++++
-
-
-    public void showByAuthorSortedByYears(String author) {
+    public ArrayList<Book> showByAuthorSortedByYears(String author) {
         ArrayList<Book> authorList = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            if (books[i].getAuthor().equals(author)) {
+            if (books[i] != null) {
+                if (books[i].getAuthor().equals(author)) {
                 authorList.add(books[i]);
-            }
+            }}
         }
 
         authorList.sort((o1, o2) -> Integer.compare(o1.getYear(), o2.getYear()));
 
-        for (int i = 0; i < size; i++) {
-            System.out.println(authorList.get(i));
-        }
+        return authorList;
     }
 
-    public void showAuthorListSortedByAlphabet() {
+    public ArrayList<String> showAuthorListSortedByAlphabet() {
         ArrayList<String> authorList = new ArrayList<String>();
+
         for (int i = 0; i < size; i++) {
             authorList.add(books[i].getAuthor());
         }
 
         Collections.sort(authorList);
 
-        for (int i = 0; i < size; i++) {
-                System.out.println(authorList.get(i));
-        }
+        return authorList;
     }
 
 
-    public void showBooksAfterYear(int year) {
+    public ArrayList<Book> showBooksAfterYear(int year) {
+        ArrayList<Book> newArray = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             if (books[i].getYear() > year) {
-                System.out.println(books[i]);
+                newArray.add(books[i]);
             }
         }
+        return newArray;
     }
 
 
-    public void showBooksByPublisher(String publisher) {
+    public ArrayList<Book> showBooksByPublisher(String publisher) {
+        ArrayList<Book> newArray = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             if (books[i].getPublisher().equals(publisher)) {
-                System.out.println(books[i]);
+                newArray.add(books[i]);
             }
         }
+        return newArray;
     }
 
     public void deleteById(int id){

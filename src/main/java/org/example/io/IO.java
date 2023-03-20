@@ -6,8 +6,8 @@ import org.example.data.BookList;
 import java.io.*;
 
 public class IO implements InOut{
-    public Book[] readObjects(BookList products) {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("students.dat"))) {
+    public Book[] readObjects(String filePath) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
             Book[] prods = (Book[]) ois.readObject();
             System.out.println("File read success!");
             return prods;
@@ -19,9 +19,9 @@ public class IO implements InOut{
         return new Book[0];
     }
 
-    public void writeObjects(BookList products) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("students.dat"))) {
-            oos.writeObject(products.getBooks());
+    public void writeObjects(BookList books, String filePath) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            oos.writeObject(books.getBooks());
             System.out.println("File write success!");
         } catch (IOException e) {
             throw new RuntimeException(e);

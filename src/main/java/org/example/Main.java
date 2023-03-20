@@ -2,7 +2,7 @@ package org.example;
 
 import org.example.data.BookList;
 import org.example.io.IO;
-import org.example.processor.Processor;
+import org.example.ui.BookListUI;
 
 import java.io.Serializable;
 import java.util.Scanner;
@@ -34,53 +34,44 @@ public class Main implements Serializable {
     private void run() {
         BookList books = new BookList();
         IO io = new IO();
-        Processor processor = new Processor();
+
+        BookListUI ui = new BookListUI(books);
 
         loop:
         while (true) {
             menu();
             Scanner scanner = new Scanner(System.in);
+            ui.setScanner(scanner);
+
             int m = scanner.nextInt();
+            scanner.nextLine();
+
             switch (m) {
 
-                case 0 -> books.setBooksList(io.readObjects(books));
+                case 0 -> books.setBooksList(io.readObjects("students.dat"));
                 case 1 -> System.out.println(books);
 
-                case 2 -> {
-                    System.out.print("Enter name of author >> ");
-                    String author = scanner.nextLine();
-                    books.showByAuthorSortedByYears(author);
-                }
+                case 2 -> ui.showByAuthorSortedByYears();
 
-                case 3 -> books.showAuthorListSortedByAlphabet();
+                case 3 -> ui.showAuthorListSortedByAlphabet();
 
-                case 4 -> {
-                    System.out.print("Enter a year >> ");
-                    int year = scanner.nextInt();
-                    scanner.nextLine();
-                    books.showBooksAfterYear(year);
-                }
+                case 4 -> ui.showBooksAfterYear();
 
-                case 5 -> {
-                    System.out.print("Enter name of publisher >> ");
-                    String publisher = scanner.nextLine();
-                    books.showBooksByPublisher(publisher);
-                }
+                case 5 -> ui.showBooksByPublisher();
 
-                case 6 -> processor.addNewBook(books, scanner);
+                case 6 -> ui.addNewBook(books, scanner);
 
-                case 7 -> {
-                    System.out.print("Enter id to delete >> ");
-                    int id = scanner.nextInt();
-                    books.deleteById(id);
-                }
+                case 7 -> ui.deleteById();
 
-                case 8 -> io.writeObjects(books);
-                case 9 -> processor.createBooksArray(books);
+                case 8 -> io.writeObjects(books, "students.dat");
+
+                case 9 -> ui.createSomeBooksArray(books);
                 case 10 -> {
                     break loop;
                 }
             }
         }
     }
+
+
 }
