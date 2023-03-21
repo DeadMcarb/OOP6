@@ -40,7 +40,7 @@ public class BookList {
 
 
 
-    public ArrayList<Book> showByAuthorSortedByYears(String author) {
+    public List<Book> getByAuthorSortedByYears(String author) {
         ArrayList<Book> authorList = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
@@ -50,13 +50,13 @@ public class BookList {
             }}
         }
 
-        authorList.sort((o1, o2) -> Integer.compare(o1.getYear(), o2.getYear()));
+        authorList.sort(Comparator.comparingInt(Book::getYear));
 
         return authorList;
     }
 
-    public ArrayList<String> showAuthorListSortedByAlphabet() {
-        ArrayList<String> authorList = new ArrayList<String>();
+    public List<String> getAuthorListSortedByAlphabet() {
+        ArrayList<String> authorList = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
             authorList.add(books[i].getAuthor());
@@ -68,7 +68,7 @@ public class BookList {
     }
 
 
-    public ArrayList<Book> showBooksAfterYear(int year) {
+    public List<Book> getBooksAfterYear(int year) {
         ArrayList<Book> newArray = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             if (books[i].getYear() > year) {
@@ -79,7 +79,7 @@ public class BookList {
     }
 
 
-    public ArrayList<Book> showBooksByPublisher(String publisher) {
+    public List<Book> getBooksByPublisher(String publisher) {
         ArrayList<Book> newArray = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             if (books[i].getPublisher().equals(publisher)) {

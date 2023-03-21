@@ -3,7 +3,7 @@ package org.example.ui;
 import org.example.data.Book;
 import org.example.data.BookList;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class BookListUI {
@@ -64,7 +64,7 @@ public class BookListUI {
 
 
 
-    private void printArayList(ArrayList<Book> arr) {
+    private void printList(List<Book> arr) {
         for (Book book : arr) {
             System.out.println(book.toString());
         }
@@ -74,7 +74,7 @@ public class BookListUI {
         System.out.print("Enter name of publisher >> ");
         String publisher = scanner.nextLine();
 
-        printArayList(books.showBooksByPublisher(publisher));
+        printList(books.getBooksByPublisher(publisher));
 
     }
 
@@ -83,21 +83,21 @@ public class BookListUI {
         int year = scanner.nextInt();
         scanner.nextLine();
 
-        printArayList(books.showBooksAfterYear(year));
+        printList(books.getBooksAfterYear(year));
     }
 
     public void showByAuthorSortedByYears() {
         System.out.println("Enter name of author >> ");
         String author = scanner.nextLine();
 
-        printArayList(books.showByAuthorSortedByYears(author));
+        printList(books.getByAuthorSortedByYears(author));
     }
 
 
 
     public void showAuthorListSortedByAlphabet() {
 
-        ArrayList<String> arr = books.showAuthorListSortedByAlphabet();
+        List<String> arr = books.getAuthorListSortedByAlphabet();
 
         for (String element : arr) {
             System.out.println(element);
